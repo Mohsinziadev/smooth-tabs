@@ -1,6 +1,6 @@
 {
     "name": "smooth-tabs",
-    "version": "5.0.1",
+    "version": "5.0.2",
     "description": "Accessible, scrollable React tabs with an animated indicator, overflow-aware arrows, keyboard navigation and built-in scroll-spy for section navigation. Zero dependencies.",
     "keywords": [
         "react",
