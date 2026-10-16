@@ -3,7 +3,8 @@
 Accessible, scrollable React tabs with an animated indicator, overflow-aware scroll buttons, full keyboard support, and built-in **scroll-spy** for sticky section navigation.
 
 [![npm](https://img.shields.io/npm/v/smooth-tabs)](https://www.npmjs.com/package/smooth-tabs)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/smooth-tabs)](https://bundlephobia.com/package/smooth-tabs)
+[![min+gzip: 3.4 kB](https://img.shields.io/badge/min%2Bgzip-3.4%20kB-blue)](#size)
+[![dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen)](./package.json)
 [![license](https://img.shields.io/npm/l/smooth-tabs)](./LICENSE)
 
 > Formerly published as [`react-smooth-tabs`](https://www.npmjs.com/package/react-smooth-tabs). See [Migrating from v4](#migrating-from-v4).

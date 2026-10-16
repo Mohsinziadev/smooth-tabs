@@ -38,5 +38,6 @@ scripts/          size report and React version compatibility check
 ## Releasing
 
 1. Update `CHANGELOG.md` and the version in `package.json`.
-2. `npm run verify && npm run test:compat`
-3. `npm publish` (runs `verify` again via `prepublishOnly`).
+1. If `npm run size` reports a different size, update the size badge and the Size table in `README.md`, and `BUNDLE_SIZE` in `demo/src/Header.tsx`.
+1. `npm run verify && npm run test:compat`
+1. `npm publish` (runs `verify` again via `prepublishOnly`).
