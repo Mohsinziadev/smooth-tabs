@@ -2,6 +2,13 @@
 
 This project follows [Semantic Versioning](https://semver.org/).
 
+## 5.0.1
+
+Package metadata only; no code changes.
+
+-   Homepage now points to the demo at https://smooth-tabs.vercel.app/.
+-   Repository and issue links now point to https://github.com/Mohsinziadev/smooth-tabs.
+
 ## 5.0.0
 
 A rewrite focused on reliability, accessibility and real-world scrolling. v4 props keep working, with deprecation warnings. See "Migrating from v4" in the README.

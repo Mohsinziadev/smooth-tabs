@@ -35,41 +35,49 @@ export function ProductTabs() {
 
 // ---- Live npm data ------------------------------------------------------------
 
+/** A value loaded from npm: `undefined` while loading, `null` if unavailable. */
+type Live<T> = T | null | undefined;
+
 interface NpmStats {
-    version?: string;
-    downloads?: number;
-    failed?: boolean;
+    version: Live<string>;
+    downloads: Live<number>;
 }
 
 function useNpmStats(name: string): NpmStats {
-    const [stats, setStats] = React.useState<NpmStats>({});
+    const [version, setVersion] = React.useState<Live<string>>();
+    const [downloads, setDownloads] = React.useState<Live<number>>();
     React.useEffect(() => {
         let cancelled = false;
-        const json = (url: string) =>
-            fetch(url).then((r) => {
-                if (!r.ok) throw new Error(String(r.status));
-                return r.json();
-            });
-        Promise.all([
-            json(`https://registry.npmjs.org/${name}/latest`),
-            json(`https://api.npmjs.org/downloads/point/last-month/${name}`),
-        ])
-            .then(([latest, downloads]) => {
-                if (!cancelled) {
-                    setStats({
-                        version: latest.version,
-                        downloads: downloads.downloads,
-                    });
-                }
-            })
-            .catch(() => {
-                if (!cancelled) setStats({ failed: true });
-            });
+        // Each figure loads on its own: npm's download stats lag behind newly
+        // published packages, and that shouldn't hide the version.
+        const load = <T,>(
+            url: string,
+            pick: (data: Record<string, unknown>) => T,
+            set: (value: T | null) => void
+        ) => {
+            fetch(url)
+                .then((r) => {
+                    if (!r.ok) throw new Error(String(r.status));
+                    return r.json();
+                })
+                .then((data) => !cancelled && set(pick(data)))
+                .catch(() => !cancelled && set(null));
+        };
+        load(
+            `https://registry.npmjs.org/${name}/latest`,
+            (d) => String(d.version),
+            setVersion
+        );
+        load(
+            `https://api.npmjs.org/downloads/point/last-month/${name}`,
+            (d) => Number(d.downloads),
+            setDownloads
+        );
         return () => {
             cancelled = true;
         };
     }, [name]);
-    return stats;
+    return { version, downloads };
 }
 
 // ---- Copy to clipboard ---------------------------------------------------------
@@ -249,14 +257,17 @@ function Install() {
 
 function Spec() {
     const npm = useNpmStats(pkg.name);
-    const pending = !npm.failed && npm.version === undefined;
-    const live = (value: string | undefined) =>
-        pending ? (
+    const live = <T,>(
+        value: Live<T>,
+        format: (v: T) => string,
+        unavailable: string
+    ) =>
+        value === undefined ? (
             <span className="spec__pending">loading</span>
-        ) : npm.failed ? (
-            <span title="Couldn't reach the npm registry">—</span>
+        ) : value === null ? (
+            <span title={unavailable}>—</span>
         ) : (
-            value
+            format(value)
         );
     const items: Array<{
         term: string;
@@ -265,17 +276,19 @@ function Spec() {
     }> = [
         {
             term: "Latest on npm",
-            value: live(npm.version && `v${npm.version}`),
+            value: live(
+                npm.version,
+                (v) => `v${v}`,
+                "Couldn't reach the npm registry"
+            ),
             href: NPM,
         },
         {
             term: "Downloads",
             value: live(
-                npm.downloads === undefined
-                    ? undefined
-                    : `${new Intl.NumberFormat("en").format(
-                          npm.downloads
-                      )} / mo`
+                npm.downloads,
+                (n) => `${new Intl.NumberFormat("en").format(n)} / mo`,
+                "npm hasn't published download stats for this package yet"
             ),
             href: `https://npm-stat.com/charts.html?package=${pkg.name}`,
         },

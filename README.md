@@ -8,7 +8,7 @@ Accessible, scrollable React tabs with an animated indicator, overflow-aware scr
 
 > Formerly published as [`react-smooth-tabs`](https://www.npmjs.com/package/react-smooth-tabs). See [Migrating from v4](#migrating-from-v4).
 
-**[Live demo →](https://react-scrollable-tabs.vercel.app/)**
+**[Live demo →](https://smooth-tabs.vercel.app/)**
 
 -   **Zero dependencies.** About 3.4 kB gzipped for the component, plus 1.3 kB of optional CSS.
 -   **Scrolls the way users expect.** Touch, trackpad, and wheel scrolling work. Arrow buttons appear only when tabs overflow and disable themselves at either end. Edges fade where more tabs are hidden.
