@@ -1,0 +1,286 @@
+/*
+ * smooth-tabs default styles.
+ * Every rule is scoped to `.rst` classes; nothing here touches the rest of the page.
+ * Override the custom properties below to theme the component.
+ */
+
+.rst {
+    --rst-active-color: #0f766e;
+    --rst-active-font-weight: inherit;
+    --rst-line-color: rgba(127, 127, 127, 0.25);
+    --rst-line-width: 1px;
+    --rst-indicator-size: 2px;
+    --rst-indicator-radius: 2px;
+    --rst-gap: 4px;
+    --rst-tab-padding: 10px 14px;
+    --rst-tab-radius: 6px;
+    --rst-hover-bg: rgba(127, 127, 127, 0.1);
+    --rst-badge-bg: #64748b;
+    --rst-badge-color: #fff;
+    --rst-arrow-size: 32px;
+    --rst-fade-size: 24px;
+    --rst-duration: 250ms;
+    --rst-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.rst *,
+.rst *::before,
+.rst *::after {
+    box-sizing: border-box;
+}
+
+.rst--vertical {
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ---- Scroll viewport ---------------------------------------------------- */
+
+.rst__viewport {
+    --rst-fade-dir: to right;
+    --rst-fade-start: 0px;
+    --rst-fade-end: 0px;
+
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.rst__viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.rst--vertical .rst__viewport {
+    --rst-fade-dir: to bottom;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-x: auto;
+    overscroll-behavior-y: contain;
+}
+
+[dir="rtl"] .rst--horizontal .rst__viewport,
+.rst--horizontal[dir="rtl"] .rst__viewport {
+    --rst-fade-dir: to left;
+}
+
+.rst--fade.rst--overflow-start .rst__viewport {
+    --rst-fade-start: var(--rst-fade-size);
+}
+
+.rst--fade.rst--overflow-end .rst__viewport {
+    --rst-fade-end: var(--rst-fade-size);
+}
+
+.rst--fade.rst--overflow-start .rst__viewport,
+.rst--fade.rst--overflow-end .rst__viewport {
+    -webkit-mask-image: linear-gradient(
+        var(--rst-fade-dir),
+        transparent 0,
+        #000 var(--rst-fade-start),
+        #000 calc(100% - var(--rst-fade-end)),
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        var(--rst-fade-dir),
+        transparent 0,
+        #000 var(--rst-fade-start),
+        #000 calc(100% - var(--rst-fade-end)),
+        transparent 100%
+    );
+}
+
+/* ---- Tab list ----------------------------------------------------------- */
+
+.rst__list {
+    position: relative;
+    display: flex;
+    gap: var(--rst-gap);
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: var(--rst-line-width) solid var(--rst-line-color);
+}
+
+.rst--vertical .rst__list {
+    flex-direction: column;
+    width: auto;
+    min-width: 0;
+    min-height: 100%;
+    border-bottom: 0;
+    border-inline-start: var(--rst-line-width) solid var(--rst-line-color);
+}
+
+/* ---- Tabs --------------------------------------------------------------- */
+
+.rst__tab {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0;
+    padding: var(--rst-tab-padding);
+    border: 0;
+    border-radius: var(--rst-tab-radius);
+    background: none;
+    color: inherit;
+    font: inherit;
+    line-height: 1.25;
+    text-align: start;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color var(--rst-duration) var(--rst-easing),
+        background-color var(--rst-duration) var(--rst-easing);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.rst__tab:hover:not(:disabled) {
+    background-color: var(--rst-hover-bg);
+}
+
+.rst__tab:focus {
+    outline: none;
+}
+
+.rst__tab:focus-visible {
+    outline: 2px solid var(--rst-active-color);
+    outline-offset: -2px;
+}
+
+.rst__tab--active {
+    color: var(--rst-active-color);
+    font-weight: var(--rst-active-font-weight);
+}
+
+.rst__tab:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.rst__icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.rst__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.6em;
+    height: 1.6em;
+    padding: 0 0.45em;
+    border-radius: 999px;
+    background: var(--rst-badge-bg);
+    color: var(--rst-badge-color);
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---- Indicator ------------------------------------------------------------ */
+
+.rst__indicator {
+    position: absolute;
+    left: 0;
+    bottom: calc(-1 * var(--rst-line-width));
+    width: 0;
+    height: var(--rst-indicator-size);
+    border-radius: var(--rst-indicator-radius);
+    background: var(--rst-active-color);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.rst--vertical .rst__indicator {
+    top: 0;
+    bottom: auto;
+    left: auto;
+    inset-inline-start: calc(-1 * var(--rst-line-width));
+    width: var(--rst-indicator-size);
+    height: 0;
+}
+
+.rst__indicator[data-ready] {
+    transition: transform var(--rst-duration) var(--rst-easing),
+        width var(--rst-duration) var(--rst-easing),
+        height var(--rst-duration) var(--rst-easing),
+        opacity var(--rst-duration) var(--rst-easing);
+}
+
+/* ---- Scroll buttons --------------------------------------------------------- */
+
+.rst__arrow {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: var(--rst-arrow-size);
+    min-height: var(--rst-arrow-size);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--rst-tab-radius);
+    background: none;
+    color: inherit;
+    font-size: 18px;
+    cursor: pointer;
+    transition: opacity var(--rst-duration) var(--rst-easing),
+        background-color var(--rst-duration) var(--rst-easing);
+}
+
+.rst--vertical .rst__arrow {
+    width: auto;
+    height: var(--rst-arrow-size);
+}
+
+.rst__arrow:hover:not(:disabled) {
+    background-color: var(--rst-hover-bg);
+}
+
+.rst__arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.rst__arrow-img {
+    display: block;
+    max-width: 100%;
+    max-height: var(--rst-arrow-size);
+}
+
+.rst--vertical .rst__chevron {
+    transform: rotate(90deg);
+}
+
+[dir="rtl"] .rst--horizontal .rst__chevron,
+.rst--horizontal[dir="rtl"] .rst__chevron {
+    transform: scaleX(-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rst__tab,
+    .rst__arrow,
+    .rst__indicator[data-ready] {
+        transition: none;
+    }
+}

@@ -1,0 +1,25 @@
+name: Bug report
+description: Something doesn't work as documented
+labels: [bug]
+body:
+    - type: textarea
+      id: what
+      attributes:
+          label: What happened?
+          description: What did you expect, and what happened instead?
+      validations:
+          required: true
+    - type: textarea
+      id: repro
+      attributes:
+          label: Minimal reproduction
+          description: A CodeSandbox/StackBlitz link or a short code snippet.
+      validations:
+          required: true
+    - type: input
+      id: versions
+      attributes:
+          label: Versions
+          placeholder: smooth-tabs 5.0.0, React 18.3, Chrome 130, Next.js 15
+      validations:
+          required: true
