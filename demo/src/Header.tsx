@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollableTabs, getPanelId, getTabId } from "smooth-tabs";
 import pkg from "../../package.json";
 
-export const REPO = "https://github.com/Mohsinziadev/react-scrollable-tabs";
+export const REPO = "https://github.com/Mohsinziadev/smooth-tabs";
 export const NPM = "https://www.npmjs.com/package/smooth-tabs";
 const DOCS = `${REPO}#readme`;
 const API = `${REPO}#api`;

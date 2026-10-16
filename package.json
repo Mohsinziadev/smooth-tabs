@@ -26,10 +26,10 @@
     "homepage": "https://react-scrollable-tabs.vercel.app/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Mohsinziadev/react-scrollable-tabs.git"
+        "url": "git+https://github.com/Mohsinziadev/smooth-tabs.git"
     },
     "bugs": {
-        "url": "https://github.com/Mohsinziadev/react-scrollable-tabs/issues"
+        "url": "https://github.com/Mohsinziadev/smooth-tabs/issues"
     },
     "license": "ISC",
     "author": "Mohsin Zia <mohsinziadev@gmail.com>",
