@@ -1,5 +1,5 @@
 {
     "installCommand": "HUSKY=0 npm ci",
-    "buildCommand": "npm run demo:build",
-    "outputDirectory": "demo/dist"
+    "buildCommand": "npm run build:site",
+    "outputDirectory": "site-dist"
 }

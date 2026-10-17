@@ -15,7 +15,7 @@ import reportIcon from "./icons/ReportIcon.svg";
 import revenueIcon from "./icons/revinueIcon.svg";
 import segmentIcon from "./icons/segmentIcon.svg";
 import storiesIcon from "./icons/storiesIcon.svg";
-import { Hero, NPM, REPO, SiteNav } from "./Header";
+import { Hero, NPM, PACKAGES, REPO, SiteNav } from "./Header";
 
 /** Renders an SVG file in `currentColor`, so icons follow the tab's active color. */
 function Icon({ src, size = 18 }: { src: string; size?: number }) {
@@ -578,7 +578,8 @@ export function App() {
                 <div className="wrap footer__inner">
                     <span>ISC licensed · Made by Mohsin Zia</span>
                     <span>
-                        <a href={REPO}>GitHub</a> · <a href={NPM}>npm</a>
+                        <a href={REPO}>GitHub</a> · <a href={NPM}>npm</a> ·{" "}
+                        <a href={PACKAGES}>More packages on M2Toolkit</a>
                     </span>
                 </div>
             </footer>

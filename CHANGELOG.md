@@ -2,6 +2,12 @@
 
 This project follows [Semantic Versioning](https://semver.org/).
 
+## 5.0.3
+
+Package metadata only; no code changes.
+
+-   Homepage and the README demo link now point to the live demo at https://www.m2toolkit.com/npm-packages/smooth-tabs.
+
 ## 5.0.1
 
 Package metadata only; no code changes.

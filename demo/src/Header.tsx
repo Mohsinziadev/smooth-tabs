@@ -5,6 +5,7 @@ import pkg from "../../package.json";
 export const REPO = "https://github.com/Mohsinziadev/smooth-tabs";
 export const NPM = "https://www.npmjs.com/package/smooth-tabs";
 const DOCS = `${REPO}#readme`;
+export const PACKAGES = "https://www.m2toolkit.com/npm-packages";
 const API = `${REPO}#api`;
 
 /** min+gzip of the full ESM build, from `npm run size`. Update when the build changes. */
@@ -347,6 +348,9 @@ export function SiteNav() {
                     <a href={DOCS}>Docs</a>
                     <a className="nav-optional" href={API}>
                         API
+                    </a>
+                    <a className="nav-optional" href={PACKAGES}>
+                        More packages
                     </a>
                     <a className="topbar__gh" href={REPO}>
                         <GitHubIcon />

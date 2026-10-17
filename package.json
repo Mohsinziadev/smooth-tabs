@@ -1,6 +1,6 @@
 {
     "name": "smooth-tabs",
-    "version": "5.0.2",
+    "version": "5.0.3",
     "description": "Accessible, scrollable React tabs with an animated indicator, overflow-aware arrows, keyboard navigation and built-in scroll-spy for section navigation. Zero dependencies.",
     "keywords": [
         "react",
@@ -23,7 +23,7 @@
         "typescript",
         "react-component"
     ],
-    "homepage": "https://smooth-tabs.vercel.app/",
+    "homepage": "https://www.m2toolkit.com/npm-packages/smooth-tabs",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Mohsinziadev/smooth-tabs.git"
@@ -62,6 +62,7 @@
         "build": "tsup",
         "dev": "vite demo",
         "demo:build": "vite build demo",
+        "build:site": "node scripts/build-site.mjs",
         "test": "vitest run",
         "test:watch": "vitest",
         "test:coverage": "vitest run --coverage",

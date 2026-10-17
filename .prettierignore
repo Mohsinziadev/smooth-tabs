@@ -3,3 +3,4 @@ coverage
 demo/dist
 package-lock.json
 .prettierrc
+site-dist

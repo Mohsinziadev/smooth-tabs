@@ -1,0 +1,20 @@
+{
+    "slug": "smooth-tabs",
+    "url": "https://www.m2toolkit.com/npm-packages/smooth-tabs",
+    "siteName": "M2Toolkit",
+    "ogImage": "https://www.m2toolkit.com/opengraph-image",
+    "accent": "#4f46e5",
+    "title": "Smooth Tabs",
+    "tagline": "Accessible, scrollable React tabs with an animated indicator.",
+    "highlights": [
+        "Animated indicator that follows the active tab",
+        "Overflow-aware scroll arrows for long tab lists",
+        "Built-in scroll-spy for section navigation",
+        "Keyboard navigation, right-to-left support, zero dependencies"
+    ],
+    "build": {
+        "root": "demo",
+        "viteConfig": "demo/vite.config.js",
+        "serverEntry": "demo/src/entry-server.tsx"
+    }
+}
